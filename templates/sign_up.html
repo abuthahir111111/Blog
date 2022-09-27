@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "header.html" as header %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form-style.css') }}">
+{% endblock %}
+{% block content %}
+{{ header.nav(not user.is_authenticated, False) }}
+<div class="form-container">
+    <h2>Sign Up</h2>
+    <form action="{{ url_for('sign_up') }}" method="POST" novalidate>
+        {{ form.csrf_token }}
+        {{ form.name(class_="textfield", placeholder="Name") }}
+        {{ form.email(class_="textfield", placeholder="Email") }}
+        {{ form.password(class_="textfield", placeholder="Password") }}
+        {{ form.confirm_password(class_="textfield", placeholder="Confirm Password") }}
+        <button type="submit" class="sign-up button-padding">Sign Up</button>
+        <button type="submit" class="log-in button-padding" formaction="{{ url_for('login') }}" formmethod="GET">Log In</button>
+    </form>
+</div>
+{% endblock %}

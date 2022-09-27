@@ -1,0 +1,50 @@
+.form-container {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 7% 5%;
+    border: 1px solid #5B7DB1;
+    border-radius: 3px;
+}
+form {
+    text-align: right;
+}
+.forgot-password {
+    display: block;
+    text-align: left;
+    font-size: 0.6em;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+form>* {
+    margin: 5px 0;
+}
+.button-padding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 49%;
+}
+.textfield {
+    width: 92%;
+    max-width: 320px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0 0 0 1000px white inset;
+    border: 1px solid #5B7DB1;
+    border-radius: 3px;
+}
+@media (max-width: 400px) {
+    .form-container {
+        max-width: 300px;
+    }
+    .textfield {
+        max-width: 270px;
+    }
+    .top-nav {
+        flex-direction: column;
+    }
+}

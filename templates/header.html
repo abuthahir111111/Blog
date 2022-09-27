@@ -1,0 +1,32 @@
+{% macro nav(login=True, signup=True) %}
+<nav class="top-nav">
+    <a href="" class="logo">Abu-Blog</a>
+    <div class="links">
+        <ul>
+            <li>
+                <a href="/">
+                    Blog
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="#contact">
+                    Contact
+                </a>
+            </li>
+        </ul>
+        {% if signup %}
+        <button class="sign-up" href="{{ url_for('sign_up') }}">Sign up</button>
+        {% endif %}
+        {% if login %}
+        <button class="log-in" href="{{ url_for('login') }}">Log in</button>
+        {% else %}
+        <button class="sign-up" href="{{ url_for('logout') }}">Log out</button>
+        {% endif %}
+    </div>
+</nav>
+{% endmacro %}

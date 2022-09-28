@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/form-style.css') }}">
 {% endblock %}
 {% block content %}
-{{ header.nav(not user.is_authenticated, False) }}
+{{ header.nav(False, True, False) }}
 <div class="form-container">
     <h2>Log in</h2>
     <form action="{{ url_for('login') }}" method="POST" novalidate>

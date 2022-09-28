@@ -111,7 +111,7 @@ footer {
     margin-right: 4%;
     border: 5px solid #5B7DB1;
     border-radius: 10px;
-    z-index: 1;
+    overflow-x: hidden;
 }
 .cards>* {
     width: 30vw;
@@ -150,7 +150,7 @@ footer {
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
-    width: calc(75vw + 120px);
+    width: calc(75vw + 126px);
     margin: auto;
 }
 /* test end */
@@ -200,4 +200,15 @@ footer {
     margin: auto;
     padding: 6% 0;
     line-height: 2;
+}
+
+.add-blog {
+    display: block;
+    width: max-content;
+    padding: 1em;
+    margin-left: auto;
+    margin-right: calc(12.5vw - 42px);
+    margin-top: 3%;
+    text-transform: uppercase;
+    font-size: 1rem;
 }

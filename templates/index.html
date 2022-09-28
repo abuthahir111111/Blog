@@ -32,6 +32,11 @@
         </div>
         {% endfor %}
     </section>
+    {% if user.is_authenticated %}
+        {% if user.privileges < 3 %}
+        <button class="log-in add-blog" href="{{ url_for('add_blog') }}">Add new Blog</button>
+        {% endif %}
+    {% endif %}
 </main>
 {{ footer.footer() }}
 {% endblock %}

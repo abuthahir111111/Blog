@@ -2,7 +2,7 @@ body {
     text-align: center;
 }
 h1 {
-    color: #d0c3c3;
+    color: #8077a3;
 }
 h2 {
     color: #948ab7;
@@ -12,6 +12,13 @@ h3, h4, h5, h6, p {
 }
 p {
     font-size: 1.1em;
+}
+img {
+    display: block;
+    width: max-content;
+    margin: auto;
+    border: 1px solid #F7E2E2;
+    border-radius: 3px;
 }
 section {
     padding: 10% 20%;

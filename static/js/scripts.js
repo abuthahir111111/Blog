@@ -38,3 +38,12 @@ let blogs = document.querySelectorAll(".blog");
 let sign_in_buttons = document.querySelectorAll('.sign-up');
 let log_in_buttons = document.querySelectorAll(".log-in");
 changeButtonsToLinks(blogs, sign_in_buttons, log_in_buttons);
+
+
+// render background of sections
+let sections = document.querySelectorAll("section");
+for (let section of sections) {
+    section.style.backgroundImage = `url(${section.getAttribute('img_url')})`;
+    section.style.backgroundSize = `cover`;
+    section.style.backgroundPosition = `50% 50%`;
+}

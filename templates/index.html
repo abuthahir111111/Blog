@@ -24,11 +24,11 @@
 <main>
     <h2>Here are some interesting stuff. Check em out!</h2>
     <section class="blog-container">
-        {% for i in range(12) %}
-        <div class="blog" href="{{ url_for('getblog', id=i) }}">
-            <img src="https://i.pinimg.com/originals/80/d3/64/80d364e09d31fcba8af274926d4332ff.jpg" alt="" class="blog-thumbnail">
-            <h3 class="title">Blog title</h3>
-            <h4 class="subtitle">Blog subtitle</h4>
+        {% for blog in blogs %}
+        <div class="blog" href="{{ url_for('getblog', id=blog.id) }}">
+            <img src="{{ blog.img_url }}" alt="" class="blog-thumbnail">
+            <h3 class="title">{{ blog.title }}</h3>
+            <h4 class="subtitle">{{ blog.subtitle }}</h4>
         </div>
         {% endfor %}
     </section>

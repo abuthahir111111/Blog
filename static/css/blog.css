@@ -1,6 +1,12 @@
 body {
     text-align: center;
 }
+h1 {
+    color: #d0c3c3;
+}
+h2 {
+    color: #948ab7;
+}
 h3, h4, h5, h6, p {
     text-align: left;
 }
@@ -9,4 +15,8 @@ p {
 }
 section {
     padding: 10% 20%;
+}
+main {
+    padding: 0;
+    padding-bottom: 5%;
 }

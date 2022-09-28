@@ -39,12 +39,11 @@ h1 {
 }
 main {
     background-color: #403761;
-    /* background-color: #61A4BC; */
+    padding: 5% 0;
 }
 main>h2 {
     color: #d0c3c3;
     text-align: center;
-    padding: 5% 0 0;
 }
 footer {
     color: #F7E2E2;
@@ -86,7 +85,6 @@ footer {
     padding: 0 10px 0;
 }
 .hero-content {
-    /* padding: 10% 0 10% 4%; */
     padding: 6% 0;
     width: 100vw;
     display: flex;
@@ -133,19 +131,32 @@ footer {
 .card3 {
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIlY1BTFFsed129p_70coGSVKLkPDj8iTKHw&usqp=CAU");
 }
-.blog-container {
+/* .blog-container {
     display: grid;
-    grid-template-rows: 72vh 72vh 72vh;
-    grid-template-columns: 18vw 18vw 18vw 18vw;
+    grid-template-rows: 72vh 72vh 72vh 72vh;
+    grid-template-columns: 25vw 25vw 25vw;
     column-gap: 20px;
     row-gap: 20px;
     padding: 2% 0 10%;
     margin: auto;
     justify-content: center;
     align-items: center;
+} */
+
+/* test */
+.blog-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: calc(75vw + 120px);
+    margin: auto;
 }
+/* test end */
+
 .blog-thumbnail {
-    width: 18vw;
+    width: 25vw;
     height: 50vh;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -154,13 +165,15 @@ footer {
     border-bottom: 1px solid #1A132F;
 }
 .blog {
+    /* test */
+    width: 25vw;
+    height: 72vh;
+    margin: 20px;
+    /* test end */
     display: block;
-    /* color: #1A132F; */
     color: #948ab7;
-    /* border: 1px solid #1A132F; */
     border: 1px solid #948ab7;
     text-align: center;
-    /* padding: 10% 0%; */
     transition: 0.2s;
     border-radius: 10px;
 }
@@ -179,8 +192,6 @@ footer {
     margin-right: auto;
 }
 .subtitle {
-    /* color: #211d2d; */
-    /* color: #F7E2E2; */
     border-bottom: none;
 }
 #contact {

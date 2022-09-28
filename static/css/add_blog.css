@@ -1,0 +1,37 @@
+:root {
+    --form-width: 700px;
+    --textfield-padding: 15px;
+    --background-color: #403761;
+}
+body {
+    text-align: left;
+}
+h2 {
+    text-align: center;
+}
+form {
+    width: 100%;
+    max-width: var(--form-width);
+    margin: auto;
+}
+form>div {
+    margin: 10px 0;
+}
+form>div>* {
+    padding: var(--textfield-padding);
+    max-width: 670px;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+}
+.blog-body>* {
+    /* width: 100% !important; */
+    max-width: 700px;
+    /* border-radius: 3px; */
+    /* border: none; */
+}
+form .log-in {
+    width: max-content;
+    padding: 1em;
+    color: var(--background-color);
+}

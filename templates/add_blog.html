@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% import "header.html" as header %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/blog.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_blog.css') }}">
+{% endblock %}
+{% block content %}
+<header>
+    {{ header.nav(False, False) }}
+</header>
+<main>
+    <section>
+        <h2>Add blog</h2>
+        <form action="{{ url_for('add_blog') }}" method="POST" novalidate>
+            {{ form.csrf_token }}
+            <div class="blog-title">
+                {{ form.title(placeholder="Title") }}
+            </div>
+            <div class="blog-subtitle">
+                {{ form.subtitle(placeholder="Subtitle") }}
+            </div>
+            <div class="blog-img-url">
+                {{ form.img_url(placeholder="Image URL") }}
+            </div>
+            <div class="blog-body">
+                {{ form.body }}
+            </div>
+            <button class="log-in" type="submit">SUBMIT BLOG</button>
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name="body") }}
+        </form>
+    </section>
+</main>
+{% endblock %}

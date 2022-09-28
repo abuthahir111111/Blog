@@ -47,3 +47,15 @@ for (let section of sections) {
     section.style.backgroundSize = `cover`;
     section.style.backgroundPosition = `50% 50%`;
 }
+
+// burger icon javascript
+let menuIcon = document.querySelector(".burger-icon");
+menuIcon.isOpen = false;
+let links = document.querySelector(".links");
+menuIcon.addEventListener('click',function(evt) {
+    if (!menuIcon.isOpen) {
+        links.classList.toggle("burger-icon-links");
+        links.classList.toggle("links");
+        link_children = links.children;
+    }
+});

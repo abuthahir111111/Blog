@@ -37,6 +37,9 @@ h1 {
     font-size: 4em;
     line-height: 0.5;
 }
+h1::selection, h2::selection, h3::selection, h4::selection, p::selection, a::selection {
+    background-color: #403761;
+}
 main {
     background-color: #403761;
     padding: 5% 0;
@@ -63,12 +66,14 @@ footer {
     color: #5B7DB1;
     border: 1px solid #5B7DB1;
     width: 7em;
+    cursor: pointer;
 }
 .log-in {
     color: #1A132F;
     background-color: #5B7DB1;
     border: 1px solid #5B7DB1;
     width: 7em;
+    cursor: pointer;
 }
 .sign-up:hover {
     border: 1px solid #6a82a5;
@@ -83,6 +88,9 @@ footer {
 }
 .links ul {
     padding: 0 10px 0;
+}
+.burger-icon {
+    display: none;
 }
 .hero-content {
     padding: 6% 0;
@@ -131,19 +139,7 @@ footer {
 .card3 {
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIlY1BTFFsed129p_70coGSVKLkPDj8iTKHw&usqp=CAU");
 }
-/* .blog-container {
-    display: grid;
-    grid-template-rows: 72vh 72vh 72vh 72vh;
-    grid-template-columns: 25vw 25vw 25vw;
-    column-gap: 20px;
-    row-gap: 20px;
-    padding: 2% 0 10%;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-} */
 
-/* test */
 .blog-container {
     display: flex;
     flex-direction: row;
@@ -153,7 +149,6 @@ footer {
     width: calc(75vw + 126px);
     margin: auto;
 }
-/* test end */
 
 .blog-thumbnail {
     width: 25vw;
@@ -165,11 +160,9 @@ footer {
     border-bottom: 1px solid #1A132F;
 }
 .blog {
-    /* test */
     width: 25vw;
     height: 72vh;
     margin: 20px;
-    /* test end */
     display: block;
     color: #948ab7;
     border: 1px solid #948ab7;
@@ -179,6 +172,7 @@ footer {
 }
 .blog:hover {
     box-shadow: 0 0 4px 0.4px;
+    cursor: pointer;
 }
 .title {
     padding-bottom: 20px;
@@ -211,4 +205,87 @@ footer {
     margin-top: 3%;
     text-transform: uppercase;
     font-size: 1rem;
+}
+@media screen and (max-width: 1000px) {
+    .hero-content {
+        flex-direction: column;
+    }
+    .cards, .cards>* {
+        display: none;
+    }
+    .blog-container {
+        width: calc(70vw + 84px);
+    }
+    .blog-thumbnail {
+        width: 35vw;
+        height: 20vh;
+    }
+    .blog {
+        width: 35vw;
+        height: 40vh;
+    }
+}
+@media screen and (max-width: 700px) {
+    ul {
+        display: block;
+        width: 100%;
+    }
+    ul li {
+        width: 100%;
+        text-align: right;
+        display: block;
+    }
+    li a {
+        padding: 10px;
+    }
+    .burger-icon-links {
+        z-index: 2;
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        color: white;
+        background-color: #403761bb;
+        width: 100vw;
+        transition: 1s;
+    }
+    .burger-icon-links .sign-up, .burger-icon-links .log-in {
+        display: none;
+    }
+    .hero-content .sign-up, .hero-content .log-in {
+        display: block;
+        margin: 10px auto;
+    }
+    .top-nav {
+        position: relative;
+        padding: 10px;
+    }
+    .links {
+        display: none;
+        transition: 1s;
+    }
+    .burger-icon {
+        display: block;
+        font-size: 2rem;
+        margin-left: 10px;
+        color: #F7E2E2;
+        border: 1px solid #F7E2E2;
+        width: 4rem;
+        padding: 0;
+    }
+    .blog-container {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    .blog-container {
+        width: calc(80vw + 42px);
+    }
+    .blog-thumbnail {
+        width: 80vw;
+        height: 30vh;
+    }
+    .blog {
+        width: 80vw;
+        height: auto;
+    }
 }

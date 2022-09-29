@@ -25,10 +25,10 @@ form>div>* {
     border-radius: 3px;
 }
 .blog-body>* {
-    /* width: 100% !important; */
     max-width: 700px;
-    /* border-radius: 3px; */
-    /* border: none; */
+}
+.blog-body {
+    padding: 0;
 }
 form .log-in {
     width: max-content;

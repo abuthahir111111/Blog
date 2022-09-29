@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "header.html" as header %}
+{% import "footer.html" as footer %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+{% block content %}
+{{ header.nav(not user.is_authenticated, not user.is_authenticated, not user.is_authenticated) }}
+<article>
+    <h1>About Me</h1>
+    <img src="{{ url_for('static', filename='images/my_photo.png') }}" alt="">
+    <p>I am Abuthahir. A 20 year old aspiring Developer. I am studying in IIT Tirupati (Proud to be an IITian 😊). I like to develop web apps and learn stuff about computers and tech in general. 
+        I am proficient in HTML, CSS, Javascript, Python, c/c++, etc and know frameworks like bootstrap and Flask. Apart from programming and tech, I like to play PC and mobile games. 
+        Especially RPG games and FPS games. I have an interest in sustainable development of human society so that we don't have environmental exploitation and exploitation of workers. 
+        I like both dogs and cats. They are sooo cute and are fun to interact with. I watch anime whenever I find some free time. I find it difficult to describe myself as to whether 
+        I am an Introvert or an Extrovert. I like to talk to people. But If there are a lot of people (groups of more than 4 people), I tend to avoid them actively. 
+        And sadly, I haven't been in an relationship. It is because I was scared to dive into a relationship. I find it hard to propose a girl with a straight face. What she might do?
+        I am not scared of rejection. But I am scared that she might secretly hate me and try to humiliate me. This fear started because of the prank culture that we have. 
+        There are quite a lot of prank videos on the internet and honestly, I am not a fan of pranks (annoying other person just for personal happiness). I feel that pranks are disgusting.
+    </p>
+</article>
+{{ footer.footer() }}
+{% endblock %}

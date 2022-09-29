@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+}
+p {
+    width: 90vw;
+    max-width: 1000px;
+    margin: auto;
+}
+img {
+    display: block;
+    width: 300px;
+    height: auto;
+    border-radius: 50%;
+    margin: 50px auto;
+}
+article {
+    background-color: #403761;
+    padding: 10vh 0;
+}
+.top-nav {
+    background-color: #1A132F;
+}

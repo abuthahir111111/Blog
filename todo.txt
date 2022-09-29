@@ -1,0 +1,4 @@
+# Implement Admin and SuperUser features
+# Check for bugs and remove them
+# Make UI tweaks so that it looks good
+# Deploy on heroku or netlify

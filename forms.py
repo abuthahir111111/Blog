@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, PasswordField
+from wtforms import StringField, EmailField, PasswordField, TextAreaField
 from wtforms.validators import DataRequired, Email, URL
 from flask_ckeditor import CKEditorField
 
@@ -21,3 +21,6 @@ class AddBlogForm(FlaskForm):
     subtitle = StringField(label="Subtitle", validators=[DataRequired()])
     img_url = StringField(label="Image URL", validators=[URL(), DataRequired()])
     body = CKEditorField(label="Blog Body", validators=[DataRequired()])
+
+class CommentForm(FlaskForm):
+    comment = TextAreaField(label="Comment", validators=[DataRequired()])

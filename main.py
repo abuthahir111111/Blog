@@ -3,10 +3,12 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from werkzeug.security import check_password_hash, generate_password_hash
-from forms import LoginForm, SignUpForm, AddBlogForm
+from forms import LoginForm, SignUpForm, AddBlogForm, CommentForm
 from flask_login import LoginManager, UserMixin, login_required, current_user, login_user, logout_user
 from flask_ckeditor import CKEditor
 from datetime import datetime
+from sqlalchemy.orm import relationship
+from flask_gravatar import Gravatar
 
 load_dotenv()
 login_manager = LoginManager()
@@ -17,6 +19,13 @@ app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['CKEDITOR_PKG_TYPE'] = "standard"
+gravatar = Gravatar(app,
+                    size=100,
+                    rating='g',
+                    default='retro',
+                    force_default=False,
+                    use_ssl=False,
+                    base_url=None)
 ckeditor = CKEditor(app)
 db = SQLAlchemy(app)
 login_manager.init_app(app)
@@ -44,7 +53,7 @@ class Blog(db.Model):
     date = db.Column(db.String(20), nullable=False)
     img_url = db.Column(db.String(100), nullable=False)
     body = db.Column(db.String(2000), nullable=False)
-    comment = db.relationship('Comment', back_populates='blog')
+    comment = relationship('Comment', back_populates='blog')
 
 
 
@@ -123,13 +132,26 @@ def sign_up():
     )
 
 
-@app.route("/blog/<int:id>")
+@app.route("/blog/<int:id>", methods=['GET', 'POST'])
 def getblog(id):
     blog_data = Blog.query.get(id)
+    comment_form = CommentForm()
+    if comment_form.validate_on_submit():
+        if current_user.is_authenticated:
+            comment = Comment(
+                comment_text=comment_form.comment.data,
+                author=current_user,
+                blog=blog_data,
+            )
+            db.session.add(comment)
+            db.session.commit()
+        else:
+            return abort(404)
     return render_template(
         "blog.html", 
         blog=blog_data, 
-        user=current_user
+        user=current_user,
+        form=comment_form,
     )
 
 

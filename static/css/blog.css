@@ -3,6 +3,7 @@ body {
 }
 h1 {
     color: #8077a3;
+    line-height: 1.2;
 }
 h2 {
     color: #948ab7;
@@ -16,9 +17,11 @@ p {
 img {
     display: block;
     width: max-content;
+    max-width: 100%;
     margin: auto;
     border: 1px solid #F7E2E2;
     border-radius: 3px;
+    overflow: hidden;
 }
 section {
     padding: 10% 20%;
@@ -26,4 +29,56 @@ section {
 main {
     padding: 0;
     padding-bottom: 5%;
+}
+.blog-body {
+    padding: 5% 20%;
+}
+.blog-author {
+    text-align: right;
+}
+.comment {
+    padding: 0 20%;
+}
+.comment>form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+}
+.comment>form>* {
+    margin: 0 10px;
+}
+.comment>form>label {
+    align-self: flex-start;
+}
+.comment>form>textarea {
+    width: 100%;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0 0 0 1000px white inset;
+    border: 1px solid #5B7DB1;
+    border-radius: 3px;
+}
+.comment>form>button {
+    height: 100%;
+    font-size: 1rem;
+}
+.blog-comment {
+    padding: 0% 20%;
+}
+.blog-comment-item {
+    border-bottom: 1px solid #948AB7;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+}
+.blog-comment-image {
+    margin: 10px 10px 10px 0;
+}
+.blog-comment-description>h4 {
+    text-align: left;
 }

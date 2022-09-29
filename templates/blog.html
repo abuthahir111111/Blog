@@ -12,9 +12,33 @@
         <h1>{{ blog.title }}</h1>
         <h2>{{ blog.subtitle }}</h2>
     </section>
-    <section>
+    <section class="blog-body">
         {{ blog.body | safe }}
+        <p class="blog-author">- {{ blog.author.username }}</p>
     </section>
+    {% if user.is_authenticated %}
+    <section class="comment">
+        <form action="{{ url_for('getblog', id=blog.id) }}" method="POST">
+            {{ form.csrf_token }}
+            {{ form.comment(placeholder="Type Comment here...") }}
+            <button type="submit" class="log-in button-padding">Comment</button>
+        </form>
+    </section>
+    {% endif %}
+    
+    <section class="blog-comment">
+        <h3>Comments</h3>
+        {% for comment in blog.comment %}
+        <div class="blog-comment-item">
+            <img src="{{ comment.author.email | gravatar }}" alt="" class="blog-comment-image">
+            <div class="blog-comment-description">
+                <h4>{{ comment.author.username }}</h4>
+                <p>{{ comment.comment_text }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    
 </main>
 {{ footer.footer() }}
 {% endblock %}

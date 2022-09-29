@@ -27,6 +27,7 @@ form>* {
     padding-top: 10px;
     padding-bottom: 10px;
     width: 49%;
+    max-width: 200px;
 }
 .textfield {
     width: 92%;

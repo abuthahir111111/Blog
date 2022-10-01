@@ -8,9 +8,11 @@ let blog_container = document.querySelector(".blog-container");
 
 function changeButtonsToLinks(...collections) {
     for (let buttons of collections) {
+        if (!buttons) break;
         for (let button of buttons) {
-            button.addEventListener('click', (evt) => {
-                window.location=button.getAttribute("href");
+            button.addEventListener('click', function(evt) {
+                evt.stopPropagation();
+                window.location = button.getAttribute("href");
             });
         }
     }
@@ -38,6 +40,18 @@ let blogs = document.querySelectorAll(".blog");
 let sign_in_buttons = document.querySelectorAll('.sign-up');
 let log_in_buttons = document.querySelectorAll(".log-in");
 changeButtonsToLinks(blogs, sign_in_buttons, log_in_buttons);
+for (let blog of blogs) {
+    blog.addEventListener("mouseover", function(evt) {
+        evt.stopPropagation();
+        let privilege_buttons = blog.children[3];
+        privilege_buttons.style.opacity = 1;
+    });
+    blog.addEventListener("mouseout", function(evt) {
+        evt.stopPropagation();
+        let privilege_buttons = blog.children[3];
+        privilege_buttons.style.opacity = 0;
+    });
+}
 
 
 // render background of sections
@@ -56,6 +70,34 @@ menuIcon.addEventListener('click',function(evt) {
     if (!menuIcon.isOpen) {
         links.classList.toggle("burger-icon-links");
         links.classList.toggle("links");
-        link_children = links.children;
     }
+});
+
+
+// changing delete post's default behavior
+let deletePosts = document.querySelectorAll(".delete-post");
+let popupWarning = document.querySelector(".popup-warning"); 
+let confirmButton = document.querySelector(".confirm");
+let reject = document.querySelector(".reject");
+if (reject) {
+    reject.addEventListener('click', function(evt) {
+        evt.preventDefault();
+        popupWarning.style.opacity = 0;
+        popupWarning.style.display = "none";
+        document.body.classList.remove("stop-scrolling");
+    });
+}
+for (let deletePost of deletePosts) {
+    if (!deletePost) break;
+    deletePost.addEventListener('click', function(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        popupWarning.style.display = "block";
+        popupWarning.style.opacity = 1;
+        confirmButton.href = deletePost.href;
+        document.body.classList.add("stop-scrolling");
+    });
+}
+confirmButton.addEventListener('click', (evt) => {
+    document.body.classList.remove("stop-scrolling");
 });

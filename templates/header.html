@@ -1,6 +1,6 @@
 {% macro nav(login=True, signup=True, login_logout_visible=True) %}
 <nav class="top-nav">
-    <a href="" class="logo">Abu-Blog</a>
+    <a href="{{ url_for('home') }}" class="logo">Abu-Blog</a>
     <div class="links">
         <ul>
             <li>

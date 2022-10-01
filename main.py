@@ -97,8 +97,12 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        login_user(user)
-        return redirect(url_for('home'))
+        if user:
+            login_user(user)
+            return redirect(url_for('home'))
+        else:
+            flash("User does not exist")
+            return redirect(url_for('login'))
     return render_template(
         "login.html", 
         form=form, 
@@ -181,8 +185,51 @@ def add_blog():
     return render_template(
         "add_blog.html", 
         form=form, 
-        user=current_user
+        user=current_user,
+        add_blog=True,
+        id=1,
     )
+
+
+@app.route("/blog/edit/<int:id>", methods=['GET', 'POST'])
+@login_required
+def edit_blog(id):
+    if current_user.privileges == 1:
+        blog = Blog.query.get(id)
+        form = AddBlogForm()
+
+        if form.validate_on_submit():
+            blog.title = form.title.data
+            blog.subtitle = form.subtitle.data
+            blog.img_url = form.img_url.data
+            blog.body = form.body.data
+            db.session.commit()
+            return redirect(url_for('getblog', id=blog.id))
+        
+        form.title.data = blog.title
+        form.subtitle.data = blog.subtitle
+        form.img_url.data = blog.img_url
+        form.body.data = blog.body
+        return render_template(
+            "add_blog.html", 
+            form=form, 
+            user=current_user,
+            id=id,
+            add_blog=False,
+        )
+    else:
+        return abort(401)
+
+
+@app.route("/blog/delete/<int:id>")
+@login_required
+def delete_blog(id):
+    if current_user.privileges == 1:
+        blog = Blog.query.get(id)
+        db.session.delete(blog);
+        db.session.commit();
+        return redirect(url_for('home'))
+    return abort(401)
 
 
 @app.route("/logout")

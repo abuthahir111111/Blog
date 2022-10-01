@@ -1,4 +1,10 @@
 # Implement Admin and SuperUser features
+    # If privilege level 1 user hovers over the blogpost, a delete button and edit button will appear (visually over the blogpost)-Done
+    # Edit and Delete buttons should appear in each blogpost page as well - Done
+    # If privilege level 2 user hovers over their blogpost, a delete button and edit button will appear only for their blogposts.-Done
+    # Upon clicking it, a popup will come that asks (are you sure you want to delete the post? (Yes/No)) - Done
+    # And add views and templates for editing blogpost - Done
+# Implement an privilege 1 admin page so that he can assign higher privileges to other users
 # Check for bugs and remove them
 # Make UI tweaks so that it looks good
 # Deploy on heroku or netlify

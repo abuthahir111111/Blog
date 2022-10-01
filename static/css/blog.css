@@ -82,3 +82,14 @@ main {
 .blog-comment-description>h4 {
     text-align: left;
 }
+.blog-operations {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.blog-operations>* {
+    margin: 10px;
+    padding: 2% 0;
+    width: 160px;
+}

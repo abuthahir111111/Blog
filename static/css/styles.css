@@ -51,6 +51,10 @@ main>h2 {
 footer {
     color: #F7E2E2;
 }
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
 .top-nav {
     display: flex;
     flex-direction: row;
@@ -139,7 +143,43 @@ footer {
 .card3 {
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIlY1BTFFsed129p_70coGSVKLkPDj8iTKHw&usqp=CAU");
 }
-
+.popup-warning {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background: #342953ab;
+    opacity: 0;
+    transition: background 0.2s;
+}
+.popup-warning>div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10%;
+    background: #342953d1;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #948AB7;
+}
+.delete-confirm {
+    display: inline-block;
+    color: #948ab7;
+    width: 30%;
+    margin: 10% 2%;
+    padding: 2%;
+    border: 1px solid;
+    border-radius: 3px;
+    border-color: #948AB7;
+    transition: 0.2s;
+}
+.delete-confirm:hover {
+    color: #948ab7;
+    box-shadow: 0 0 4px 0.4px;
+    cursor: pointer;
+}
 .blog-container {
     display: flex;
     flex-direction: row;
@@ -169,8 +209,60 @@ footer {
     text-align: center;
     transition: 0.2s;
     border-radius: 10px;
+    position: relative;
+    overflow: hidden;
 }
 .blog:hover {
+    box-shadow: 0 0 4px 0.4px;
+    cursor: pointer;
+}
+.privilege-buttons {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background-color: #403761cb;
+    transition: 0.2s;
+}
+.privilege-buttons>div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+}
+.edit-post {
+    color: #948ab7;
+    display: block;
+    width: 80%;
+    margin: 10% 2%;
+    padding: 8%;
+    border: 1px solid;
+    border-radius: 3px;
+    border-color: #948AB7;
+    transition: 0.2s;
+}
+.delete-post {
+    color: #948ab7;
+    display: block;
+    width: 80%;
+    margin: 10% 2%;
+    padding: 8%;
+    border: 1px solid;
+    border-radius: 3px;
+    border-color: #948AB7;
+    transition: 0.2s;
+}
+.edit-post:hover {
+    color: #948ab7;
+    box-shadow: 0 0 4px 0.4px;
+    cursor: pointer;
+}
+.delete-post:hover {
+    color: #948ab7;
     box-shadow: 0 0 4px 0.4px;
     cursor: pointer;
 }
@@ -216,6 +308,9 @@ footer {
     .blog-container {
         width: calc(70vw + 84px);
     }
+    .add-blog {
+        margin-right: calc(15vw - 21px);
+    }
     .blog-thumbnail {
         width: 35vw;
         height: 20vh;
@@ -226,6 +321,9 @@ footer {
     }
 }
 @media screen and (max-width: 700px) {
+    h1 {
+        font-size: 3rem;
+    }
     ul {
         display: block;
         width: 100%;
@@ -241,6 +339,7 @@ footer {
     .burger-icon-links {
         z-index: 2;
         display: flex;
+        flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
@@ -248,9 +347,11 @@ footer {
         background-color: #403761bb;
         width: 100vw;
         transition: 1s;
+        align-items: flex-end;
     }
     .burger-icon-links .sign-up, .burger-icon-links .log-in {
-        display: none;
+        display: block;
+        margin: 10px;
     }
     .hero-content .sign-up, .hero-content .log-in {
         display: block;
@@ -276,9 +377,10 @@ footer {
     .blog-container {
         flex-direction: column;
         flex-wrap: nowrap;
-    }
-    .blog-container {
         width: calc(80vw + 42px);
+    }
+    .add-blog {
+        margin-right: auto;
     }
     .blog-thumbnail {
         width: 80vw;

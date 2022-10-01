@@ -8,6 +8,11 @@
 {{ header.nav(False, True, False) }}
 <div class="form-container">
     <h2>Log in</h2>
+    {% with flashed_messages=get_flashed_messages() %}
+    {% for message in flashed_messages %}
+    <div style="color: red;">{{message}}</div>
+    {% endfor %}
+    {% endwith %}
     <form action="{{ url_for('login') }}" method="POST" novalidate>
         {{ form.csrf_token }}
         {{ form.email(class_="textfield", placeholder="Email") }}

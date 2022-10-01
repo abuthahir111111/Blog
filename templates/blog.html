@@ -6,6 +6,17 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/blog.css') }}">
 {% endblock %}
 {% block content %}
+{% if user.is_authenticated %}
+    {% if user.privileges < 3 %}
+        <div class="popup-warning">
+            <div>
+                <p>are you sure you want to delete that post?</p>
+                <a class="delete-confirm confirm">Yes</a>
+                <a class="delete-confirm reject">No</a>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
 {{ header.nav(not user.is_authenticated, not user.is_authenticated) }}
 <main>
     <section img_url="{{ blog.img_url }}">
@@ -15,6 +26,14 @@
     <section class="blog-body">
         {{ blog.body | safe }}
         <p class="blog-author">- {{ blog.author.username }}</p>
+        {% if user.is_authenticated %}
+            {% if user.privileges == 1 or user == blog.author %}
+            <div class="blog-operations">
+                <a class="edit-post" href="{{ url_for('edit_blog', id=blog.id) }}">Edit post</a>
+                <a class="delete-post" href="{{url_for('delete_blog', id=blog.id)}}">Delete post</a>
+            </div>
+            {% endif %}
+        {% endif %}
     </section>
     {% if user.is_authenticated %}
     <section class="comment">

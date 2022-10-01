@@ -75,6 +75,11 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+@app.route("/")
+def homefn():
+    return render_template("page.html")
+
+
 @app.route("/home")
 def home():
     blogs = Blog.query.all()

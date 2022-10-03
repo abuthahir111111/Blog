@@ -17,7 +17,7 @@
         </div>
     {% endif %}
 {% endif %}
-{{ header.nav(not user.is_authenticated, not user.is_authenticated) }}
+{{ header.nav(not user.is_authenticated, not user.is_authenticated, True, is_admin) }}
 <main>
     <section img_url="{{ blog.img_url }}">
         <h1>{{ blog.title }}</h1>

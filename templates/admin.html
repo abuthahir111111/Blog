@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "header.html" as header %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+{% block content %}
+{{ header.nav(not current_user.is_authenticated, not current_user.is_authenticated) }}
+<div class="table">
+    <div class="cell-heading">ID</div>
+    <div class="cell-heading">Username</div>
+    <div class="cell-heading">Email</div>
+    <div class="cell-heading">Privileges</div>
+    {% for user in users %}
+        <div class="cell">{{ user.id }}</div>
+        <div class="cell">{{ user.username }}</div>
+        <div class="cell">{{ user.email }}</div>
+        <div class="cell privileges">
+            <input type="text" placeholder="{{ user.privileges }}" value="{{ user.privileges }}" class="textbox" name="{{ user.id }}">            
+        </div>
+    {% endfor %}
+</div>
+<button type="button" formaction="{{ url_for('admin') }}" formmethod="POST" class="make-changes"> Make Changes</button>
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

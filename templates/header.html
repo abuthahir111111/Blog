@@ -1,4 +1,4 @@
-{% macro nav(login=True, signup=True, login_logout_visible=True) %}
+{% macro nav(login=True, signup=True, login_logout_visible=True, is_admin=False) %}
 <nav class="top-nav">
     <a href="{{ url_for('home') }}" class="logo">Abu-Blog</a>
     <div class="links">
@@ -24,9 +24,12 @@
         {% endif %}
         {% if login_logout_visible %}
             {% if login %}
-            <button class="log-in" href="{{ url_for('login') }}">Log in</button>
+                <button class="log-in" href="{{ url_for('login') }}">Log in</button>
             {% else %}
-            <button class="sign-up" href="{{ url_for('logout') }}">Log out</button>
+                {% if is_admin %}
+                    <button class="log-in" href="{{ url_for('admin') }}">Admin Panel</button>
+                {% endif %}
+                <button class="sign-up" href="{{ url_for('logout') }}">Log out</button>
             {% endif %}
         {% endif %}
     </div>

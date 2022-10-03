@@ -15,7 +15,7 @@
     {% endif %}
 {% endif %}
 <header>
-    {{ header.nav(not user.is_authenticated, not user.is_authenticated) }}
+    {{ header.nav(not user.is_authenticated, not user.is_authenticated, True, is_admin) }}
     <div class="hero-content">
         <div class="intro">
             <h1>Abu's blog</h1>

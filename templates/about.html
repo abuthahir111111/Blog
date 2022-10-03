@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
 {% endblock %}
 {% block content %}
-{{ header.nav(not user.is_authenticated, not user.is_authenticated, not user.is_authenticated) }}
+{{ header.nav(not user.is_authenticated, not user.is_authenticated, True, is_admin) }}
 <article>
     <h1>About Me</h1>
     <img src="{{ url_for('static', filename='images/my_photo.png') }}" alt="">

@@ -98,6 +98,8 @@ for (let deletePost of deletePosts) {
         document.body.classList.add("stop-scrolling");
     });
 }
-confirmButton.addEventListener('click', (evt) => {
-    document.body.classList.remove("stop-scrolling");
-});
+if (confirmButton) {
+    confirmButton.addEventListener('click', (evt) => {
+        document.body.classList.remove("stop-scrolling");
+    });
+}

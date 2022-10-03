@@ -70,6 +70,13 @@ class Comment(db.Model):
 db.create_all()
 
 
+def if_user_is_admin(user):
+    if user.is_authenticated:
+        if user.privileges == 1:
+            return True
+    return False
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -82,17 +89,24 @@ def homefn():
 
 @app.route("/home")
 def home():
+    is_admin = if_user_is_admin(current_user)
     blogs = Blog.query.all()
     return render_template(
         "index.html", 
         user=current_user, 
         blogs=blogs,
+        is_admin=is_admin,
     )
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html", user=current_user)
+    is_admin = if_user_is_admin(current_user)
+    return render_template(
+        "about.html", 
+        user=current_user, 
+        is_admin=is_admin
+    )
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -150,6 +164,7 @@ def sign_up():
 def getblog(id):
     blog_data = Blog.query.get(id)
     comment_form = CommentForm()
+    is_admin = if_user_is_admin(current_user)
     if comment_form.validate_on_submit():
         if current_user.is_authenticated:
             comment = Comment(
@@ -166,12 +181,14 @@ def getblog(id):
         blog=blog_data, 
         user=current_user,
         form=comment_form,
+        is_admin=is_admin,
     )
 
 
 @app.route("/blog/add", methods=['GET', 'POST'])
 @login_required
 def add_blog():
+    is_admin = if_user_is_admin(current_user)
     if current_user.privileges == 3:
         return abort(403)
     form = AddBlogForm()
@@ -193,12 +210,14 @@ def add_blog():
         user=current_user,
         add_blog=True,
         id=1,
+        is_admin=is_admin,
     )
 
 
 @app.route("/blog/edit/<int:id>", methods=['GET', 'POST'])
 @login_required
 def edit_blog(id):
+    is_admin = if_user_is_admin(current_user)
     if current_user.privileges == 1:
         blog = Blog.query.get(id)
         form = AddBlogForm()
@@ -221,6 +240,7 @@ def edit_blog(id):
             user=current_user,
             id=id,
             add_blog=False,
+            is_admin=is_admin,
         )
     else:
         return abort(401)
@@ -242,6 +262,20 @@ def delete_blog(id):
 def logout():
     logout_user()
     return redirect(url_for("home"))
+
+
+@app.route("/admin", methods=['GET', 'POST'])
+@login_required
+def admin():
+    if request.method == 'POST':
+        json_data = request.get_json(force=True)
+        for data in json_data:
+            user = db.session.query(User).get(int(data.get('id')))
+            user.privileges = int(data.get('value'))
+            db.session.commit()
+        return jsonify({"success": "data received successfully"})
+    users = db.session.query(User).all()
+    return render_template("admin.html", users=users, current_user=current_user)
 
 
 if __name__ == "__main__":

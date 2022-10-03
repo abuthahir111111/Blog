@@ -8,29 +8,11 @@
 {% endblock %}
 {% block content %}
 <header>
-    {{ header.nav(False, False) }}
+    {{ header.nav(False, False, True, is_admin) }}
 </header>
 <main>
     <section>
         <h2>Add blog</h2>
-        <!-- <form action="{{ url_for('add_blog') }}" method="POST" novalidate>
-            {{ form.csrf_token }}
-            <div class="blog-title">
-                {{ form.title(placeholder="Title") }}
-            </div>
-            <div class="blog-subtitle">
-                {{ form.subtitle(placeholder="Subtitle") }}
-            </div>
-            <div class="blog-img-url">
-                {{ form.img_url(placeholder="Image URL") }}
-            </div>
-            <div class="blog-body">
-                {{ form.body }}
-            </div>
-            <button class="log-in" type="submit">SUBMIT BLOG</button>
-            {{ ckeditor.load() }}
-            {{ ckeditor.config(name="body") }}
-        </form> -->
         {{ blog_add_edit_form(add_blog=add_blog, form=form, ckeditor=ckeditor, id=id) }}
     </section>
 </main>

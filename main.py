@@ -267,6 +267,7 @@ def logout():
 @app.route("/admin", methods=['GET', 'POST'])
 @login_required
 def admin():
+    if not if_user_is_admin(current_user): return abort(401)
     if request.method == 'POST':
         json_data = request.get_json(force=True)
         for data in json_data:
